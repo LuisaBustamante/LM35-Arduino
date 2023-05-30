@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Datos del Monitor Serie</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Datos del Monitor Serie:</h1>
+        <div class="card mt-4">
+            <div class="card-body">
+                <p id="data-container" class="h3">Cargando...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var source = new EventSource('/stream');
+
+            source.onmessage = function(event) {
+                $('#data-container').text(event.data);
+            };
+        });
+    </script>
+</body>
+</html>
